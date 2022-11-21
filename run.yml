@@ -1,0 +1,62 @@
+#!/usr/bin/env ansible-playbook
+
+- hosts: all
+  become: false
+
+  vars_files:
+    - custom.yml
+    - secret.yml
+    - software.yml
+
+  roles:
+    - role: vaulttec.zsh
+
+    - role: system
+
+    - role: docker
+      when: software|select("equalto", "docker")
+
+    - role: ssh
+      when: software|select("equalto", "ssh")
+    
+    - role: vnc
+      when: software|select("equalto", "vnc")
+
+    - role: professormanhattan.bravebrowser
+      when: software|select("equalto", "brave")
+
+    - role: vscode
+      when: software|select("equalto", "vscode")
+
+    - role: sublime
+      when: software|select("equalto", "sublime")
+
+    - role: ngrok
+      when: software|select("equalto", "ngrok")
+
+    - role: fubarhouse.golang
+      become: true
+      when: software|select("equalto", "go")
+
+    - role: rust
+      when: software|select("equalto", "rust")
+
+    - role: professormanhattan.ruby
+      when: software|select("equalto", "ruby")
+
+    - role: ghidra
+      when: software|select("equalto", "ghidra")
+
+    - role: gdb
+      when: software|select("equalto", "gdb")
+
+    - role: markosamuli.pyenv
+      when: software|select("equalto", "pyenv")
+
+    - role: fubarhouse.nodejs
+      when: software|select("equalto", "nvm")
+    
+    - role: samba
+      when: software|select("equalto", "nvm")
+    
+    - role: finish
