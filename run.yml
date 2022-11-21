@@ -58,6 +58,6 @@
       when: software|select("equalto", "nvm")
     
     - role: samba
-      when: software|select("equalto", "nvm")
+      when: software|select("equalto", "samba")
     
     - role: finish
