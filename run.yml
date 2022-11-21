@@ -54,6 +54,7 @@
       when: software|select("equalto", "pyenv")
 
     - role: fubarhouse.nodejs
+      become: true
       when: software|select("equalto", "nvm")
     
     - role: samba
